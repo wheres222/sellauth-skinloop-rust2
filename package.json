@@ -1,0 +1,26 @@
+{
+  "name": "sellauth-skinloop-rust2",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "npm run db:migrate && wrangler deploy",
+    "db:migrate": "wrangler d1 migrations apply DB --remote",
+    "test": "node --import tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "cloudflare": {
+    "bindings": {
+      "SKINLOOP_API_KEY": {"description":"Skinloop checkout:create and checkout:read key, Rust restricted. Store as a secret."},
+      "SELLAUTH_API_KEY": {"description":"Merchant-owned scoped SellAuth shop API key. Store as a secret."},
+      "SELLAUTH_SHOP_ID": {"description":"Merchant SellAuth shop identifier."}
+    }
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250906.0",
+    "typescript": "^5.6.3",
+    "tsx": "^4.21.0",
+    "wrangler": "^4.0.0"
+  }
+}

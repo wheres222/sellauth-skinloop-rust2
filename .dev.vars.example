@@ -1,0 +1,7 @@
+# Cloudflare's Deploy button prompts for these encrypted secrets.
+# Enter real values in Cloudflare only. Never commit a filled-in copy.
+SKINLOOP_API_KEY=
+SELLAUTH_API_KEY=
+
+# After deployment, create the webhook endpoint using the Worker URL and add
+# SKINLOOP_WEBHOOK_SECRET_CURRENT separately as a Cloudflare encrypted secret.

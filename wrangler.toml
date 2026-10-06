@@ -1,0 +1,24 @@
+name = "sellauth-skinloop-rust2"
+main = "src/worker.ts"
+compatibility_date = "2026-09-22"
+[vars]
+SKINLOOP_API_BASE_URL = "https://api.skinloop.io"
+SKINLOOP_HOSTED_ORIGIN = "https://checkout.skinloop.io"
+SELLAUTH_API_BASE_URL = "https://api.sellauth.com/v1"
+SELLAUTH_SHOP_ID = "270991"
+[triggers]
+crons = ["*/5 * * * *"]
+[[d1_databases]]
+binding = "DB"
+database_name = "sellauth-skinloop-rust"
+database_id = "5141534c-046b-44aa-ae88-373af1183eab"
+migrations_dir = "migrations"
+[[queues.producers]]
+binding = "FULFILLMENT_QUEUE"
+queue = "sellauth-skinloop-rust-fulfillment"
+[[queues.consumers]]
+queue = "sellauth-skinloop-rust-fulfillment"
+max_batch_size = 1
+max_batch_timeout = 5
+max_retries = 10
+dead_letter_queue = "sellauth-skinloop-rust-dead-letter"
